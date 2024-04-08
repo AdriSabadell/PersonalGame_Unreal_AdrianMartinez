@@ -21,29 +21,22 @@ public:
 
     // Called to bind functionality to input
     virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-    // Function to handle forward movement
+    
     void MoveForward(float Value);
-
-    // Maximum forward speed
+    
     UPROPERTY(EditAnywhere, Category = "Movement")
     float MaxSpeed;
-
-    // Acceleration rate
+    
     UPROPERTY(EditAnywhere, Category = "Movement")
     float AccelerationRate;
-
-    // Deceleration rate
+    
     UPROPERTY(EditAnywhere, Category = "Movement")
     float DecelerationRate;
-
-    // Function to handle package delivery
+    
     void EntregarPaquete();
-
-    // Function to handle package delivery
+    
     void GolpeCoche();
-
-    // Function to handle package delivery
+    
     void RecogerComida();
 
     void ActivateNitro();
@@ -57,22 +50,18 @@ public:
 
     bool bIsNitroActive;
 
-    int32 NitroTimeElapsed;
-    int32 NitroDuration;
+    float NitroTimeElapsed;
+    float NitroDuration;
     bool QuedaNitro;
 protected:
-    // Called when the game starts or when spawned
     virtual void BeginPlay() override;
-
-    // Number of packages to deliver
+    
     int32 PaquetesRestantes;
     
 
 private:
-    // Current forward speed
     float CurrentSpeed;
-
-    // Collision function called when player collides with other actors
+    
     UFUNCTION()
     void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
