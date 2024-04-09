@@ -43,6 +43,8 @@ public:
 
     void DeactivateNitro();
 
+    void RellenarGasoline();
+
     UPROPERTY(EditAnywhere, Category = "Delibers")
     int32 EntregasRestantes;
 
@@ -53,10 +55,12 @@ public:
     float NitroTimeElapsed;
     float NitroDuration;
     bool QuedaNitro;
+
 protected:
     virtual void BeginPlay() override;
     
     int32 PaquetesRestantes;
+
     
 
 private:

@@ -17,7 +17,7 @@ AJugador::AJugador()
 	PaquetesRestantes = 10;
 	EntregasRestantes = 5;
 
-	NitroSpeed = 1500.f;
+	NitroSpeed = 1800.f;
 	bIsNitroActive = false;
 
 	NitroTimeElapsed = 0;
@@ -35,14 +35,14 @@ void AJugador::BeginPlay()
 void AJugador::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	
+	//FString NitroTimeText = FString::Printf(TEXT("Nitro Time Elapsed: %.2f"), NitroTimeElapsed);
+	//UE_LOG(LogTemp, Warning, TEXT("%s"), *NitroTimeText);
 	FVector NewLocation = GetActorLocation() + GetActorForwardVector() * CurrentSpeed * DeltaTime;
 	SetActorLocation(NewLocation);
 
 	if (bIsNitroActive == true)
 	{
 		NitroTimeElapsed += DeltaTime;
-		
 		
 		if (NitroTimeElapsed >= NitroDuration)
 		{
@@ -51,22 +51,18 @@ void AJugador::Tick(float DeltaTime)
 		}
 	}
 	
-	
 }
 
 // Called to bind functionality to input
 void AJugador::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 	
 	PlayerInputComponent->BindAxis("MoveForward", this, &AJugador::MoveForward);
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &AJugador::AddControllerYawInput);
 
 	PlayerInputComponent->BindAction("Nitro", IE_Pressed, this, &AJugador::ActivateNitro);
 	PlayerInputComponent->BindAction("Nitro", IE_Released, this, &AJugador::DeactivateNitro);
-
-
 	
 	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &AJugador::OnOverlapBegin);
 }
@@ -82,7 +78,6 @@ void AJugador::ActivateNitro()
 		bIsNitroActive = false;
 	}
 	UE_LOG(LogTemp, Warning, TEXT("Funcion Activate Nitro"));
-	
 }
 
 void AJugador::DeactivateNitro()
@@ -123,22 +118,18 @@ void AJugador::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class A
 	{
 		UE_LOG(LogTemp, Warning, TEXT("El jugador ha chocado con un enemigoooooooo"));
 		GolpeCoche();
-
 	}
 
 	if (OtherActor && OtherActor->ActorHasTag("Pizzeria"))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("El jugador ha recogido mas comida"));
 		RecogerComida();
-
 	}
 
 	if (OtherActor && OtherActor->ActorHasTag("Gasolina"))
 	{
-		
 		UE_LOG(LogTemp, Warning, TEXT("El jugador llena el depósito"));
-		//RellenarGasoline();
-
+		RellenarGasoline();
 	}
 }
 
@@ -148,12 +139,7 @@ void AJugador::EntregarPaquete()
 	// Verificar si hay paquetes restantes
 	if (PaquetesRestantes > 0)
 	{
-		
-		UE_LOG(LogTemp, Warning, TEXT("Entrega de paquete realizada"));
-        
-		
 		PaquetesRestantes--;
-
 		UE_LOG(LogTemp, Warning, TEXT("Paquetes restantes: %d"), PaquetesRestantes);
 		
 
@@ -174,28 +160,25 @@ void AJugador::EntregarPaquete()
 
 void AJugador::GolpeCoche()
 {
-	
-	
-	PaquetesRestantes -= 3;
-
-	
+	PaquetesRestantes -= 2;
 	PaquetesRestantes = FMath::Max(PaquetesRestantes, 0);
-
 	UE_LOG(LogTemp, Warning, TEXT("Paquetes restantes: %d"), PaquetesRestantes);
-
 	Jump();
-
-
 	
 }
 
 
 void AJugador::RecogerComida()
 {
-	PaquetesRestantes += 8;
-	
-	PaquetesRestantes = FMath::Max(PaquetesRestantes, 0);
-
+	PaquetesRestantes = 10;
 	UE_LOG(LogTemp, Warning, TEXT("Paquetes restantes: %d"), PaquetesRestantes);
+}
+
+void AJugador::RellenarGasoline()
+{
+	UE_LOG(LogTemp, Warning, TEXT("El jugador tiene nitro"));
+	NitroTimeElapsed = 0;
+	QuedaNitro = true;
+	bIsNitroActive = false;
 }
 
