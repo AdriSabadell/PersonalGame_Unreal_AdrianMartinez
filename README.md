@@ -2,14 +2,14 @@
 ## Risketos Básics:
 - [x] Minimapa donde están los objetos a recoger.
 - [ ] Moto con Nitro y barra de energia que se recarga con objetos.
-- [ ] Ciudad con Vida.
+- [x] Ciudad con Vida.
 
 ## Risketos Opcionals:
 - [x] Uso de c++ o Blueprint
 - [ ] Delegado c++
 - [x] Interaccion entre actores
-- [ ] GameDesign
-- [ ] Tener Objetivo
+- [x] GameDesign
+- [x] Tener Objetivo
 
 ## Controles:
 W avanzar
