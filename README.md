@@ -1,7 +1,7 @@
 # PersonalGame_Unreal_AdrianMartinez_DeliberyEats
 ## Risketos Básics:
 - [x] Minimapa donde están los objetos a recoger.
-- [ ] Moto con Nitro y barra de energia que se recarga con objetos.
+- [x] Moto con Nitro y barra de energia que se recarga con objetos.
 - [x] Ciudad con Vida.
 
 ## Risketos Opcionals:
