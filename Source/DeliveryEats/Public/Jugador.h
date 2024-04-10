@@ -48,20 +48,22 @@ public:
     UPROPERTY(EditAnywhere, Category = "Delibers")
     int32 EntregasRestantes;
 
+    UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Delibers")
+    int32 PaquetesRestantes;
+    
     float NitroSpeed;
-
+    
     bool bIsNitroActive;
-
+    
+    UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Nitro")
     float NitroTimeElapsed;
+    
     float NitroDuration;
     bool QuedaNitro;
 
 protected:
     virtual void BeginPlay() override;
-    
-    int32 PaquetesRestantes;
 
-    
 
 private:
     float CurrentSpeed;

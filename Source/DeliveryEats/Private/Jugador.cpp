@@ -146,7 +146,7 @@ void AJugador::EntregarPaquete()
 		EntregasRestantes--;
 		if (EntregasRestantes == 0)
 		{
-			// Cambiar a la escena MainMenu
+			// Cambiar a la escena MainMenu,NivelCompletado.
 			UGameplayStatics::OpenLevel(GetWorld(), TEXT("MainMenu"));
 		}
 	}
